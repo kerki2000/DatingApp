@@ -37,6 +37,7 @@ namespace API
                 options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
             services.AddControllers();
+            services.AddCors();//to enable call from one localhost to another localhost in webbrouser...
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
@@ -56,6 +57,10 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            // here x is the police we implementing here.Conected to services.AddCors()
+            //to enable call from one localhost to another localhost in webbrouser...
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")); 
 
             app.UseAuthorization();
 
