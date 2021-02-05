@@ -32,7 +32,9 @@ export class NavComponent implements OnInit {
     // })
   }
    
-
+  editProfile() {
+    this.router.navigateByUrl('/member/edit');
+  }
 
   logout() {
     this.accountService.logout();
