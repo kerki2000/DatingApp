@@ -19,10 +19,8 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>(); // lifetime of the http request ,this service injected into controller,
             //then new instance of this service is created and when request is finished, the service is disposed
             services.AddScoped<IPhotoService, PhotoService>();
-            services.AddScoped<ILikesRepository, LikesRepository>();
-            services.AddScoped<IMessageRepository, MessageRepository>();
-            services.AddScoped<LogUserActivity>();
-            services.AddScoped<IUserRepository, UserRepository>(); // user repository for use in user controller
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<LogUserActivity>();        
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
